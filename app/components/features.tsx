@@ -50,40 +50,56 @@ export default function Features() {
   return (
     <section
       id="features"
-      className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32"
+      className="bg-center bg-cover"
+      style={{
+        backgroundImage: 'url("/path.svg")',
+      }}
     >
-      <div className="text-center mb-16">
-        <span className="inline-block px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4">
-          FEATURES
-        </span>
-        <h2 className="text-4xl md:text-5xl font-bold text-balance text-foreground mb-4">
-          Everything You Need to Succeed
-        </h2>
-        <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-          Powerful features designed to keep your team organized and productive.
-        </p>
-      </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
+        <div className="text-center mb-8">
+          <span className="inline-block px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4 border hover:border-primary">
+            Features
+          </span>
+          <h2 className="text-4xl md:text-5xl font-bold text-balance text-primary/80 mb-2 underline">
+            Everything You Need to Succeed
+          </h2>
+          <p className="text-sm font-semibold text-muted-foreground max-w-2xl mx-auto">
+            Powerful features designed to keep your team organized and
+            productive.
+          </p>
+        </div>
 
-      <div className="grid md:grid-cols-3 gap-8">
-        {features.map((feature, index) => {
-          const Icon = feature.icon;
-          return (
-            <div
-              key={index}
-              className="group p-8 rounded-xl border border-border bg-card hover:border-primary/50 hover:shadow-lg transition-all duration-300"
-            >
-              <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary/20 transition">
-                <Icon className="text-primary" size={24} />
+        <div className="grid md:grid-cols-3 gap-8 md:*:even:scale-105 *:even:bg-card *:odd:bg-accent">
+          {features.map((feature, index) => {
+            const Icon = feature.icon;
+            return (
+              <div
+                key={index}
+                className="group p-8 rounded-md border hover:border-primary/50 hover:shadow-lg transition-all duration-300 realtive group"
+              >
+                <div className="flex flex-col justify-center items-start gap-1 relative mb-3">
+                  <div className="flex justify-between items-center w-full">
+                    <h3 className="flex justify-center items-center text-xl font-bold text-foreground h-full group-hover:text-primary/50">
+                      {feature.title}
+                    </h3>
+                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary/20">
+                      <Icon
+                        className="text-primary group-hover:animate-pulse"
+                        size={24}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="w-0 group-hover:transition-all group-hover:w-full group-hover:border-foreground group-hover:border absolute top-full" />
+                </div>
+
+                <p className="text-muted-foreground text-xs font-semibold group-hover:text-primary transition-all">
+                  {feature.description}
+                </p>
               </div>
-              <h3 className="text-xl font-bold text-foreground mb-3">
-                {feature.title}
-              </h3>
-              <p className="text-muted-foreground leading-relaxed">
-                {feature.description}
-              </p>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
     </section>
   );

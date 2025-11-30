@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { ThemeProvider } from "./components/theme-provider";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -21,11 +22,11 @@ export const metadata: Metadata = {
     icon: [
       {
         url: "/icon-light-32x32.png",
-        media: "(prefers-color-scheme: light)",
+        media: "(prefers-color-scheme:light)",
       },
       {
         url: "/icon-dark-32x32.png",
-        media: "(prefers-color-scheme: dark)",
+        media: "(prefers-color-scheme:dark)",
       },
       {
         url: "/icon.svg",
@@ -34,7 +35,7 @@ export const metadata: Metadata = {
     ],
     apple: "/apple-icon.png",
   },
-}
+};
 
 export default function RootLayout({
   children,
@@ -42,11 +43,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
